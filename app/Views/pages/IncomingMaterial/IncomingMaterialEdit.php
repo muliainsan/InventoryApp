@@ -9,7 +9,7 @@
                 <input type="hidden" name="id" value="<?= $MaterialData['Id']; ?>">
                 <input type="hidden" name="oldEvidence" value="<?= $MaterialData['Evidence']; ?>">
                 <div class="row mb-3">
-                    <label for="inputMaterialname" class="col-sm-2 col-form-label">Material Name</label>
+                    <label for="inputMaterialname" class="col-sm-2 col-form-label">Nama Material</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control <?= ($validation->hasError('inputMaterialname')) ? 'is-invalid' : ''; ?>" id="inputMaterialname" name="inputMaterialname" value="<?= (old('inputMaterialname')) ? old('inputMaterialname') : $MaterialData['MaterialName']; ?>" autofocus>
                         <div class="invalid-feedback">
@@ -18,10 +18,10 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputWork" class="col-sm-2 col-form-label">Work</label>
+                    <label for="inputWork" class="col-sm-2 col-form-label">Pekerjaan</label>
                     <div class="col-sm-10">
                         <select class="form-control <?= ($validation->hasError('inputWork')) ? 'is-invalid' : ''; ?>" id="inputWork" name="inputWork" value="<?= (old('inputWork')) ? old('inputWork') : $MaterialData['WorkId']; ?>" autofocus>
-                            <option>Choose Work Name</option>
+                            <option>Pilih pekerjaan</option>
                             <?php foreach ($WorkData as $Work) : ?>
                                 <option value="<?= $Work['Id']; ?>" selected="<?php if ($MaterialData['WorkId'] == $Work['Id']) "selected" ?> "><?= $Work['WorkName']; ?></option>
                             <?php endforeach; ?>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEvidence" class="col-sm-2 col-form-label">Evidence</label>
+                    <label for="inputEvidence" class="col-sm-2 col-form-label">Bukti</label>
                     <div class="col-sm-2">
                         <img src="\img\<?= (old('inputEvidence')) ? old('inputEvidence') : $MaterialData['Evidence']; ?>" class="img-thumbnail img-preview">
                     </div>

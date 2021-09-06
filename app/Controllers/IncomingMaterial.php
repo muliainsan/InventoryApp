@@ -98,9 +98,9 @@ class IncomingMaterial extends BaseController
         ]);
 
         if (!$saveResult) {
-            session()->setFlashdata('pesan', 'Failed');
+            session()->setFlashdata('pesan', 'Gagal');
         } else {
-            session()->setFlashdata('pesan', 'Data added successfully.');
+            session()->setFlashdata('pesan', 'Data berhasil ditambah.');
         }
         return redirect()->to('/IncomingMaterial')->withInput();
     }
@@ -113,7 +113,7 @@ class IncomingMaterial extends BaseController
         unlink('img/' . $temp['Evidence']);
 
         $this->IncomingMaterialModel->delete($id);
-        session()->setFlashdata('pesan', 'Data Deleted successfully.');
+        session()->setFlashdata('pesan', 'Data telah terhapus.');
         return redirect()->to('/IncomingMaterial');
     }
 
@@ -155,7 +155,7 @@ class IncomingMaterial extends BaseController
             "Evidence" => $EvidenceName,
         ]);
 
-        session()->setFlashdata('pesan', 'Data updated successfully.');
+        session()->setFlashdata('pesan', 'Data telah terupdate.');
 
         return redirect()->to('/IncomingMaterial')->withInput();
     }
@@ -170,7 +170,7 @@ class IncomingMaterial extends BaseController
             "Id" => $id,
             "Status" => $status
         ]);
-        session()->setFlashdata('pesan', 'Data Updated successfully.');
+        session()->setFlashdata('pesan', 'Data telah terupdate.');
         return redirect()->to('/IncomingMaterial');
     }
 
@@ -184,18 +184,23 @@ class IncomingMaterial extends BaseController
             'inputMaterialname' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Material Name" can not be empty',
-                    'is_unique' => '"Material Name" has been registered'
+                    'required' => 'Masukkan "Nama Material"',
+                    'is_unique' => '"Nama Material" telah terdaftar'
                 ]
             ],
             'inputWork' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Work" can not be empty',
-                    'is_unique' => '"Work" has been registered'
+                    'required' => 'Masukkan "Pekerjaan"',
+                    'is_unique' => '"Pekerjaan" telah terdaftar'
                 ]
             ],
-            'inputEvidence' => 'uploaded[inputEvidence]'
+            'inputEvidence' => [
+                'rules' => $rules,
+                'errors' => [
+                    'required' => '"Bukti" harus diupload',
+                ],
+            ]
 
 
         ];
@@ -216,15 +221,15 @@ class IncomingMaterial extends BaseController
             'inputMaterialname' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Material Name" can not be empty',
-                    'is_unique' => '"Material Name" has been registered'
+                    'required' => 'Masukkan "Nama Material"',
+                    'is_unique' => '"Nama Material" telah terdaftar'
                 ]
             ],
             'inputWork' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Work" can not be empty',
-                    'is_unique' => '"Work" has been registered'
+                    'required' => 'Masukkan "Pekerjaan"',
+                    'is_unique' => '"Pekerjaan" telah terdaftar'
                 ]
             ],
 

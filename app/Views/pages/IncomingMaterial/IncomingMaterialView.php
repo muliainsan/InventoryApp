@@ -7,8 +7,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h1>Categories Data</h1>
-                    <p class="card-text"> Create, Read, Update, Delete (CRUD) for IncomingMaterial menu datas</p>
+                    <h1>Daftar Material Masuk</h1>
+                    <p class="card-text"> Data material masuk</p>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -18,17 +18,17 @@
                         </div>
                     <?php endif; ?>
                     <table id="example1" class="table table-bordered table-hover">
-                        <a href="/IncomingMaterial/create" class="btn btn-primary mb-2 ">Add IncomingMaterial</a>
+                        <a href="/IncomingMaterial/create" class="btn btn-primary mb-2 ">Tambah Material</a>
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Material Name</th>
-                                <th>Work</th>
-                                <th>Evidence</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
+                                <th>Nama Material</th>
+                                <th>Pekerjaan</th>
+                                <th>Bukti</th>
+                                <th>Upload Oleh</th>
+                                <th>Tanggal Upload</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,7 +40,7 @@
                                     <td><?php echo $WorkModel->getWork((int)$c['WorkId'])["WorkName"]; ?></th>
                                     <td><?php echo $c['Evidence']; ?></th>
                                     <td><?php echo $c['_CreatedBy']; ?></th>
-                                    <td><?php echo date_format(date_create($c['_CreatedDate']), 'd-M-Y \a\t H:i'); ?></th>
+                                    <td><?php echo date_format(date_create($c['_CreatedDate']), 'd-M-Y \ \ \ H:i'); ?></th>
                                     <td><?php if ($c['Status'] == "0") { ?>
                                             <a style="color:#ffc107">Pending Verification</a>
                                         <?php } elseif ($c['Status'] == "1") { ?>
@@ -114,13 +114,13 @@
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Material Name</th>
-                                <th>Work</th>
-                                <th>Evidence</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
+                                <th>Nama Material</th>
+                                <th>Pekerjaan</th>
+                                <th>Bukti</th>
+                                <th>Upload Oleh</th>
+                                <th>Tanggal Upload</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                     </table>
