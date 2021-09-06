@@ -189,18 +189,23 @@ class OutgoingMaterial extends BaseController
             'inputMaterialname' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Material Name" can not be empty',
-                    'is_unique' => '"Material Name" has been registered'
+                    'required' => 'Masukkan "Nama Material"',
+                    'is_unique' => '"Material Name" telah terdaftar'
                 ]
             ],
             'inputWork' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Work" can not be empty',
-                    'is_unique' => '"Work" has been registered'
+                    'required' => '"Work"',
+                    'is_unique' => '"Work" telah terdaftar'
                 ]
             ],
-            'inputEvidence' => 'uploaded[inputEvidence]'
+            'inputEvidence' => [
+                'rules' => $rules,
+                'errors' => [
+                    'required' => 'Upload "Bukti"',
+                ],
+            ]
 
 
         ];
@@ -221,15 +226,15 @@ class OutgoingMaterial extends BaseController
             'inputMaterialname' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Material Name" can not be empty',
-                    'is_unique' => '"Material Name" has been registered'
+                    'required' => 'Masukkan "Material Name"',
+                    'is_unique' => '"Material Name" telah terdaftar'
                 ]
             ],
             'inputWork' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Work" can not be empty',
-                    'is_unique' => '"Work" has been registered'
+                    'required' => 'Masukkan "Work"',
+                    'is_unique' => '"Work" telah terdaftar'
                 ]
             ],
 

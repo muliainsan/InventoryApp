@@ -7,8 +7,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h1><?= $title; ?></h1>
-                    <p class="card-text"> Create, Read, Update, Delete (CRUD) for OutgoingMaterial menu datas</p>
+                    <h1>Daftar <?= $title; ?></h1>
+                    <p class="card-text"> Data material keluar yang diinput oleh Vendor</p>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -18,18 +18,18 @@
                         </div>
                     <?php endif; ?>
                     <table id="example1" class="table table-bordered table-hover">
-                        <a href="/OutgoingMaterial/create" class="btn btn-primary mb-2 ">Add OutgoingMaterial</a>
+                        <a href="/OutgoingMaterial/create" class="btn btn-primary mb-2 ">Tambah Material Keluar</a>
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Material Name</th>
-                                <th>Work</th>
-                                <th>Reason</th>
-                                <th>Evidence</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
+                                <th>Nama Material</th>
+                                <th>Pekerjaan</th>
+                                <th>Alasan</th>
+                                <th>Bukti</th>
+                                <th>Dibuat Oleh</th>
+                                <th>Tanggal Dibuat</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -98,15 +98,8 @@
                                                         <button type="submit" class="dropdown-item" href="">Pending Verification</button>
                                                     </form>
                                                 <?php } ?>
-
-
-
                                             </div>
                                         </div>
-
-
-
-
                                     </td>
                                 </tr>
                             <?php
@@ -116,14 +109,14 @@
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Material Name</th>
-                                <th>Work</th>
-                                <th>Reason</th>
-                                <th>Evidence</th>
-                                <th>Created By</th>
-                                <th>Created Date</th>
+                                <th>Nama Material</th>
+                                <th>Pekerjaan</th>
+                                <th>Alasan</th>
+                                <th>Bukti</th>
+                                <th>Dibuat Oleh</th>
+                                <th>Tanggal Dibuat</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </tfoot>
                     </table>

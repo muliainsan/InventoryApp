@@ -198,7 +198,7 @@ class IncomingMaterial extends BaseController
             'inputEvidence' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Bukti" harus diupload',
+                    'required' => 'Upload "Bukti"',
                 ],
             ]
 

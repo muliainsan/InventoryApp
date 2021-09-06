@@ -53,7 +53,7 @@
                                                                                                         echo 'active';
                                                                                                     } ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Incoming</p>
+                                <p>Masuk</p>
                             </a>
                         </li>
                     </ul>
@@ -63,7 +63,7 @@
                                                                                                         echo 'active';
                                                                                                     } ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Outgoing</p>
+                                <p>Keluar</p>
                             </a>
                         </li>
                     </ul>

@@ -7,7 +7,7 @@
             <form action="/OutgoingMaterial/save" method="POST" enctype="multipart/form-data">
                 <?= csrf_field(); ?>
                 <div class="row mb-3">
-                    <label for="inputMaterialname" class="col-sm-2 col-form-label">Material Name</label>
+                    <label for="inputMaterialname" class="col-sm-2 col-form-label">Nama Material</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control <?= ($validation->hasError('inputMaterialname')) ? 'is-invalid' : ''; ?>" id="inputMaterialname" name="inputMaterialname" value="<?= old('inputMaterialname'); ?>" autofocus>
                         <div class="invalid-feedback">
@@ -16,10 +16,10 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputWork" class="col-sm-2 col-form-label">Work</label>
+                    <label for="inputWork" class="col-sm-2 col-form-label">Pekerjaan</label>
                     <div class="col-sm-10">
                         <select class="form-control <?= ($validation->hasError('inputWork')) ? 'is-invalid' : ''; ?>" id="inputWork" name="inputWork" value="<?= old('inputWork'); ?>" autofocus>
-                            <option hidden disabled selected value> -- select an option -- </option>
+                            <option hidden disabled selected value> -- Pilih Opsi -- </option>
                             <?php foreach ($WorkData as $Work) : ?>
                                 <option value="<?= $Work['Id']; ?>" <?= (old('inputWork') == $Work['Id']) ? "selected" : ""; ?>><?= $Work['WorkName']; ?></option>
                             <?php endforeach; ?>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputReason" class="col-sm-2 col-form-label">Reason</label>
+                    <label for="inputReason" class="col-sm-2 col-form-label">Alasan</label>
                     <div class="col-sm-10">
                         <textarea type="text" class="form-control <?= ($validation->hasError('inputReason')) ? 'is-invalid' : ''; ?>" id="inputReason" name="inputReason" value="<?= old('inputReason'); ?>" rows="3" autofocus><?= old('inputReason'); ?></textarea>
                         <div class="invalid-feedback">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputEvidence" class="col-sm-2 col-form-label">Evidence</label>
+                    <label for="inputEvidence" class="col-sm-2 col-form-label">Bukti</label>
                     <div class="col-sm-2">
                         <img src="\img\<?= old('inputEvidence'); ?>" class="img-thumbnail img-preview">
                     </div>
@@ -52,12 +52,12 @@
                             <div class="invalid-feedback">
                                 <?= $validation->getError('inputEvidence'); ?>
                             </div>
-                            <label class="custom-file-label" for="inputEvidence">Choose file</label>
+                            <label class="custom-file-label" for="inputEvidence">Pilih file</label>
                         </div>
 
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
 
         </div>

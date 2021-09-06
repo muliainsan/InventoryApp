@@ -7,8 +7,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h1>Daftar Material Masuk</h1>
-                    <p class="card-text"> Data material masuk</p>
+                    <h1>Daftar <?= $title; ?></h1>
+                    <p class="card-text"> Data material masuk yang diinput oleh Vendor</p>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
