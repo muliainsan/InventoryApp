@@ -2,16 +2,16 @@
 
 namespace App\Controllers;
 
-use App\Models\MenuModel;
-use App\Models\CategoryModel;
+use App\Models\MaterialModel;
+use App\Models\WorkModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 
-class Menu extends BaseController
+class Material extends BaseController
 {
-    protected $MenuModel;
-    protected $CategoryModel;
-    protected $title = 'Menu';
+    protected $MaterialModel;
+    protected $WorkModel;
+    protected $title = 'Material';
 
     public function __construct()
     {
@@ -19,8 +19,8 @@ class Menu extends BaseController
             header('Location: /Login');
             exit();
         }
-        $this->MenuModel = new MenuModel();
-        $this->CategoryModel = new CategoryModel();
+        $this->MaterialModel = new MaterialModel();
+        $this->WorkModel = new WorkModel();
     }
 
     public function index()
@@ -28,21 +28,21 @@ class Menu extends BaseController
 
         $data = [
             'title' => $this->title,
-            'MenuData' => $this->MenuModel->findAll(),
-            'CategoryModel' => $this->CategoryModel,
+            'MaterialData' => $this->MaterialModel->findAll(),
+            'WorkModel' => $this->WorkModel,
         ];
 
-        echo view('pages/menu/MenuView', $data);
+        echo view('pages/Material/MaterialView', $data);
     }
 
     //function with view
     public function detail($id)
     {
-        $data = $this->MenuModel->getMenu($id);
+        $data = $this->MaterialModel->getMaterial($id);
         var_dump($data);
 
         if (empty($data)) {
-            throw new PageNotFoundException('Menu with Id ' . $id . 'not found');
+            throw new PageNotFoundException('Material with Id ' . $id . 'not found');
         };
     }
 
@@ -50,25 +50,25 @@ class Menu extends BaseController
     {
         $data = [
             'title' => $this->title,
-            'MenuData' => $this->MenuModel->findAll(),
-            'CategoryData' => $this->CategoryModel->findAll(),
+            'MaterialData' => $this->MaterialModel->findAll(),
+            'WorkData' => $this->WorkModel->findAll(),
             'validation' => \Config\Services::validation()
 
         ];
 
-        echo view('pages/menu/MenuCreate', $data);
+        echo view('pages/Material/MaterialCreate', $data);
     }
 
     public function edit($id)
     {
         $data = [
             'title' => $this->title,
-            'MenuData' => $this->MenuModel->getMenu($id),
-            'CategoryData' => $this->CategoryModel->findAll(),
+            'MaterialData' => $this->MaterialModel->getMaterial($id),
+            'WorkData' => $this->WorkModel->findAll(),
             'validation' => \Config\Services::validation()
         ];
 
-        return view('pages/menu/MenuEdit', $data);
+        return view('pages/Material/MaterialEdit', $data);
     }
 
 
@@ -76,49 +76,49 @@ class Menu extends BaseController
     public function save()
     {
 
-        $MenuName = $this->request->getVar('inputMenu');
+        $MaterialName = $this->request->getVar('inputMaterial');
         $Price = $this->request->getVar('inputPrice');
-        $Categoryid = $this->request->getVar('inputCategory') == 'No Category' ? NULL : $this->request->getVar('inputCategory');
+        $Workid = $this->request->getVar('inputWork') == 'No Work' ? NULL : $this->request->getVar('inputWork');
 
         //validation
-        $validation = $this->_validationSave($MenuName);
+        $validation = $this->_validationSave($MaterialName);
         if (!is_null($validation)) {
             return $validation;
         }
 
-        $this->MenuModel->save([
-            'MenuName' => $MenuName,
+        $this->MaterialModel->save([
+            'MaterialName' => $MaterialName,
             'Price' => $Price,
-            'CategoryId' => $Categoryid,
+            'WorkId' => $Workid,
         ]);
 
         session()->setFlashdata('pesan', 'Data added successfully.');
 
-        return redirect()->to('/Menu')->withInput();
+        return redirect()->to('/Material')->withInput();
     }
 
 
     public function delete()
     {
         $id = $this->request->getVar('Id');
-        $this->MenuModel->delete($id);
+        $this->MaterialModel->delete($id);
         session()->setFlashdata('pesan', 'Data Deleted successfully.');
-        return redirect()->to('/Menu');
+        return redirect()->to('/Material');
     }
 
     public function update()
     {
         $id = $this->request->getVar('id');
-        $MenuName = $this->request->getVar('inputMenu');
+        $MaterialName = $this->request->getVar('inputMaterial');
         $Price = $this->request->getVar('inputPrice');
-        $Categoryid = $this->request->getVar('inputCategory') == 'No Category' ? NULL : $this->request->getVar('inputCategory');
+        $Workid = $this->request->getVar('inputWork') == 'No Work' ? NULL : $this->request->getVar('inputWork');
 
         //validation
         $validation =
 
             $this->_validationEdit(
-                $this->request->getVar('inputMenu'),
-                $this->MenuModel->getMenu($id)
+                $this->request->getVar('inputMaterial'),
+                $this->MaterialModel->getMaterial($id)
 
             );
         if (!is_null($validation)) {
@@ -126,34 +126,34 @@ class Menu extends BaseController
         }
 
         //Update function is same as Save
-        $this->MenuModel->save([
+        $this->MaterialModel->save([
             'Id' => $id,
-            'MenuName' => $MenuName,
+            'MaterialName' => $MaterialName,
             'Price' => $Price,
-            'CategoryId' => $Categoryid,
+            'WorkId' => $Workid,
         ]);
 
         session()->setFlashdata('pesan', 'Data updated successfully.');
 
-        return redirect()->to('/Menu')->withInput();
+        return redirect()->to('/Material')->withInput();
     }
 
 
 
-    public function _validationSave($MenuName)
+    public function _validationSave($MaterialName)
     {
-        $rules = 'required|is_unique[Menu.MenuName]';
-        if ($this->MenuModel->is_unique($MenuName)) {
+        $rules = 'required|is_unique[Material.MaterialName]';
+        if ($this->MaterialModel->is_unique($MaterialName)) {
 
             $rules = 'required';
         }
 
         $validate = [
-            'inputMenu' => [
+            'inputMaterial' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Menu Name" can not be empty',
-                    'is_unique' => '"Menu Name" has been registered'
+                    'required' => '"Material Name" can not be empty',
+                    'is_unique' => '"Material Name" has been registered'
                 ]
             ],
             'inputPrice' => [
@@ -166,25 +166,25 @@ class Menu extends BaseController
 
         if (!$this->validate($validate)) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/Menu/Create')->withInput()->with('validation', $validation);
+            return redirect()->to('/Material/Create')->withInput()->with('validation', $validation);
         }
     }
 
-    public function _validationEdit($MenuName, $MenuDataOld)
+    public function _validationEdit($MaterialName, $MaterialDataOld)
     {
-        $rules = 'required|is_unique[Menu.MenuName]';
+        $rules = 'required|is_unique[Material.MaterialName]';
 
-        if ($MenuName == $MenuDataOld['MenuName'] || $this->MenuModel->is_unique($MenuName)) {
+        if ($MaterialName == $MaterialDataOld['MaterialName'] || $this->MaterialModel->is_unique($MaterialName)) {
 
             $rules = 'required';
         }
 
         $validate = [
-            'inputMenu' => [
+            'inputMaterial' => [
                 'rules' => $rules,
                 'errors' => [
-                    'required' => '"Menu Name" can not be empty',
-                    'is_unique' => '"Menu Name" has been registered'
+                    'required' => '"Material Name" can not be empty',
+                    'is_unique' => '"Material Name" has been registered'
                 ]
             ],
             'inputPrice' => [
@@ -197,7 +197,7 @@ class Menu extends BaseController
 
         if (!$this->validate($validate)) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/Menu/Edit/' . $MenuDataOld['Id'])->withInput()->with('validation', $validation);
+            return redirect()->to('/Material/Edit/' . $MaterialDataOld['Id'])->withInput()->with('validation', $validation);
         }
     }
 }

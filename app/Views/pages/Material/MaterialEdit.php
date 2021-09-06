@@ -4,16 +4,16 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-8">
-            <form action="/Menu/update/<?= $MenuData['Id']; ?>" method="POST">
+            <form action="/Material/update/<?= $MaterialData['Id']; ?>" method="POST">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $MenuData['Id']; ?>">
+                <input type="hidden" name="id" value="<?= $MaterialData['Id']; ?>">
                 <div class="row mb-3">
-                    <label for="inputMenu" class="col-sm-2 col-form-label">Menu Name</label>
+                    <label for="inputMaterial" class="col-sm-2 col-form-label">Material Name</label>
                     <div class="col-sm-10">
 
-                        <input type="text" class="form-control <?= ($validation->hasError('inputMenu')) ? 'is-invalid' : ''; ?>" id="inputMenu" name="inputMenu" value="<?= (old('inputMenu')) ? old('inputMenu') : $MenuData['MenuName']; ?>" autofocus>
+                        <input type="text" class="form-control <?= ($validation->hasError('inputMaterial')) ? 'is-invalid' : ''; ?>" id="inputMaterial" name="inputMaterial" value="<?= (old('inputMaterial')) ? old('inputMaterial') : $MaterialData['MaterialName']; ?>" autofocus>
                         <div class="invalid-feedback">
-                            <?= $validation->getError('inputMenu'); ?>
+                            <?= $validation->getError('inputMaterial'); ?>
                         </div>
                     </div>
                 </div>
@@ -21,19 +21,19 @@
                     <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
                     <div class="col-sm-10">
 
-                        <input type="number" class="form-control <?= ($validation->hasError('inputPrice')) ? 'is-invalid' : ''; ?>" id="inputPrice" name="inputPrice" value="<?= (old('inputMenu')) ? old('inputMenu') : $MenuData['Price']; ?>" autofocus>
+                        <input type="number" class="form-control <?= ($validation->hasError('inputPrice')) ? 'is-invalid' : ''; ?>" id="inputPrice" name="inputPrice" value="<?= (old('inputMaterial')) ? old('inputMaterial') : $MaterialData['Price']; ?>" autofocus>
                         <div class="invalid-feedback">
                             <?= $validation->getError('inputPrice'); ?>
                         </div>
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="inputMenu" class="col-sm-2 col-form-label">Category</label>
+                    <label for="inputMaterial" class="col-sm-2 col-form-label">Work</label>
                     <div class="col-sm-10">
-                        <select class="form-control <?= ($validation->hasError('inputCategory')) ? 'is-invalid' : ''; ?>" id="inputCategory" name="inputCategory" value="<?= old('inputCategory'); ?>" autofocus>
-                            <option>No Category</option>
-                            <?php foreach ($CategoryData as $category) : ?>
-                                <option <?= $category['Id'] == $MenuData['CategoryId'] ? 'Selected' : '';  ?> value="<?= $category['Id']; ?>"><?= $category['CategoryName']; ?></option>
+                        <select class="form-control <?= ($validation->hasError('inputWork')) ? 'is-invalid' : ''; ?>" id="inputWork" name="inputWork" value="<?= old('inputWork'); ?>" autofocus>
+                            <option>No Work</option>
+                            <?php foreach ($WorkData as $Work) : ?>
+                                <option <?= $Work['Id'] == $MaterialData['WorkId'] ? 'Selected' : '';  ?> value="<?= $Work['Id']; ?>"><?= $Work['WorkName']; ?></option>
                             <?php endforeach; ?>
                         </select>
                         <div class="invalid-feedback">

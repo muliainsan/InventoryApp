@@ -7,8 +7,8 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h1>Menu Data</h1>
-                    <p class="card-text"> Create, Read, Update, Delete (CRUD) for Menu menu datas</p>
+                    <h1>Material Data</h1>
+                    <p class="card-text"> Create, Read, Update, Delete (CRUD) for Material Material datas</p>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -18,35 +18,35 @@
                         </div>
                     <?php endif; ?>
                     <table id="example1" class="table table-bordered table-striped dataTable dtr-inline">
-                        <a href="/Menu/create" class="btn btn-primary mb-2 ">Add Menu</a>
+                        <a href="/Material/create" class="btn btn-primary mb-2 ">Add Material</a>
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Menu Name</th>
+                                <th>Material Name</th>
                                 <th>Price</th>
-                                <th>Category</th>
+                                <th>Work</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                            <?php foreach ($MenuData as $menu) : ?>
+                            <?php foreach ($MaterialData as $Material) : ?>
                                 <tr>
                                     <td><?php echo $i++ ?></th>
-                                    <td><?php echo $menu['MenuName']; ?></th>
-                                    <td><?php echo $menu['Price']; ?></th>
+                                    <td><?php echo $Material['MaterialName']; ?></th>
+                                    <td><?php echo $Material['Price']; ?></th>
                                         <?php
-                                        if (is_null($menu['CategoryId'])) {
+                                        if (is_null($Material['WorkId'])) {
                                         ?>
                                     <td><?php echo "-"; ?></th>
                                     <?php } else { ?>
-                                    <td><?php echo $CategoryModel->getCategory((int)$menu['CategoryId'])["CategoryName"]; ?></th>
+                                    <td><?php echo $WorkModel->getWork((int)$Material['WorkId'])["WorkName"]; ?></th>
                                     <?php } ?>
 
                                     <td>
-                                        <!-- <a href="/Menu/detail/<?= $menu['Id']; ?>" class="btn btn-success">Detail</a> -->
-                                        <a href="/Menu/edit/<?= $menu['Id']; ?>" class="btn btn-warning">Update</a>
-                                        <button type="button" class="btn btn-danger open-modaldelete" data-toggle="modal" data-target="#modal-delete" data-id='<?= $menu['Id']; ?>' data-name='<?= $menu['MenuName']; ?>'>
+                                        <!-- <a href="/Material/detail/<?= $Material['Id']; ?>" class="btn btn-success">Detail</a> -->
+                                        <a href="/Material/edit/<?= $Material['Id']; ?>" class="btn btn-warning">Update</a>
+                                        <button type="button" class="btn btn-danger open-modaldelete" data-toggle="modal" data-target="#modal-delete" data-id='<?= $Material['Id']; ?>' data-name='<?= $Material['MaterialName']; ?>'>
                                             Delete
                                         </button>
 
@@ -58,9 +58,9 @@
                         <tfoot>
                             <tr>
                                 <th>No</th>
-                                <th>Menu Name</th>
+                                <th>Material Name</th>
                                 <th>Price</th>
-                                <th>Category</th>
+                                <th>Work</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -80,17 +80,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Delete Menu</h4>
+                <h4 class="modal-title">Delete Material</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <a>Are you sure want to delete "</a> <b id="Name"></b> <a>" Menu?</a>
+                <a>Are you sure want to delete "</a> <b id="Name"></b> <a>" Material?</a>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <form action="/Menu/delete" class="d-inline" method="DELETE">
+                <form action="/Material/delete" class="d-inline" method="DELETE">
                     <?= csrf_field(); ?>
 
                     <input type="hidden" id="Id" name="Id" value="">
